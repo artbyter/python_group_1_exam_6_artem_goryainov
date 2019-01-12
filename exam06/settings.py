@@ -131,5 +131,5 @@ MEDIA_URL = '/uploads/'
 # Auth logins
 
 # LOGIN_URL = 'webauth:login'
-# LOGOUT_REDIRECT_URL = 'webauth:login'
-# LOGIN_REDIRECT_URL = 'webapp:initial_view'
+#LOGOUT_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = 'webapp:initial_view'
