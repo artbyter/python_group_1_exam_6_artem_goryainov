@@ -7,10 +7,13 @@ from django.contrib.auth.models import User
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT, related_name='user_info', verbose_name='Пользователь')
     phone = models.CharField(max_length=15, verbose_name='Телефон')
-    avatar = models.ImageField(verbose_name='Фотография')
+    avatar = models.ImageField(verbose_name='Фотография', null=True, blank=True)
     friends = models.ManyToManyField(User, blank=True)
 
-
+    @property
+    def image_url(self):
+        if self.avatar and hasattr(self.avatar, 'url'):
+            return self.avatar.url
 
 
 class Post(models.Model):

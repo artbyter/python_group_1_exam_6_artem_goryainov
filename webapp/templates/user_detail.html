@@ -1,9 +1,63 @@
 {% extends 'base.html' %}
 
 
-<title>{% block title %}    Список пользователей {% endblock title %}</title>
+<title>{% block title %} Информация о пользователе {% endblock title %}</title>
+
 
 {% block content %}
-    <p>{{ user.username }}</p>
-     <p>{{ user.user_info.phone }}</p>
-{% endblock content %}
+    <div class="col-sm-6 pl-0">
+        <div class="card ">
+            <div class="card-header p-0">
+                <p>{{ userinfo.user.username }}</p>
+                {% if is_own_profile %}
+                    <a class=" nav-item nav-link active d-inline-block float-right "
+
+                       href="{% url 'webapp:user_edit' userinfo.pk %}"><i
+                            class="fas fa-user-edit"></i></a>
+                {% endif %}
+
+
+            </div>
+            <div class="card-body">
+                <h3>{{ userinfo.user.get_full_name }}</h3>
+                <p>{{ userinfo.user.email }}</p>
+                <p>{{ userinfo.phone }}</p>
+                <img class="float-left card-img-top "
+                     src="{{ userinfo.image_url|default_if_none:'/uploads/avatar01.jpg' }}" alt="Аватарка">
+                <div class="card ">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs pull-right" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#posts" role="tab"
+                                   aria-controls="home" aria-selected="true">Посты</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#friends" role="tab"
+                                   aria-controls="profile" aria-selected="false">Друзья</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="posts" role="tabpanel"
+                                 aria-labelledby="home-tab">
+                                {% for post in posts %}
+                                    <a href="{% url 'webapp:post_detail' post.pk %}">{{ post.title }}</a><br>
+                                {% endfor %}
+                            </div>
+                            <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="profile-tab">
+                                {% for friend in userinfo.friends.all %}
+                                    <a href="{% url 'webapp:user_detail' friend.pk %}">{{ friend.username }}</a><br>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
