@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+
+            <th>Пост</th>
+            <th>Автор</th>
+            <th>Дата</th>
+            <th>Просмотр</th>
+        </tr>
+        </thead>
+
+        {% for post in object_list %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.author }}</td>
+                <td>{{ post.publish_date }}</td>
+                <td><a href="{% url 'webapp:post_detail'  post.pk %}">📜</td>
+            </tr>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

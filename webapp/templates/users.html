@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+<title>{% block title %}    Список пользователей {% endblock title %}</title>
+
+{% block content %}
+    <table>
+        <h3>Список пользователей</h3>
+        <thead>
+        <tr>
+
+            <th>Имя пользователя</th>
+            <th>Просмотр</th>
+        </tr>
+        </thead>
+        {% for user in object_list %}
+            <tr>
+                <td>{{ user.username}}</td>
+                <td><a href="{% url 'webapp:user_detail'  user.pk %}">📜</td>
+            </tr>
+            </tr>
+        {% endfor %}
+
+
+    </table>
+{% endblock content %}

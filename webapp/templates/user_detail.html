@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+<title>{% block title %}    Список пользователей {% endblock title %}</title>
+
+{% block content %}
+    <p>{{ user.username }}</p>
+     <p>{{ user.user_info.phone }}</p>
+{% endblock content %}
