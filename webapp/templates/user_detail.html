@@ -21,7 +21,8 @@
             <div class="card-body">
                 <h3>{{ userinfo.user.get_full_name }}</h3>
                 <p>{{ userinfo.user.email }}</p>
-                <p>{{ userinfo.phone }}</p>
+                <a id="phone_link" type="button">Tелефон</a>
+                <p id="phone">{{ userinfo.phone }}</p>
                 <img class="float-left card-img-top "
                      src="{{ userinfo.image_url|default_if_none:'/uploads/avatar01.jpg' }}" alt="Аватарка">
                 <div class="card ">
@@ -60,4 +61,12 @@
         </div>
     </div>
 
+{% endblock %}
+{% block scripts %}
+    <script type="application/javascript">
+        $('#phone').hide();
+        $('#phone_link').on('click', function (event) {
+            $('#phone').toggle();
+        })
+    </script>
 {% endblock %}
