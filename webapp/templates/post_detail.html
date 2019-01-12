@@ -5,15 +5,18 @@
     <div class="col-sm-6 pl-0">
         <div class="card ">
             <div class="card-header p-0">
-{#                <a class=" nav-item nav-link active d-inline-block float-right " href="{% url 'webapp:post_edit' post.pk %}"><i#}
-{#                        class="fas fa-user-edit"></i></a>#}
-{#                <a class="nav-item nav-link active d-inline-block float-right" href="{% url 'webapp:post_delete' post.pk %}"><i#}
-{#                        class="fas fa-user-times"></i></a>#}
+                {% if  if_own_post %}
+                <a class=" nav-item nav-link active d-inline-block float-right " href="{% url 'webapp:post_edit' post.pk %}"><i
+                        class="fas fa-user-edit"></i></a>
+                <a class="nav-item nav-link active d-inline-block float-right" href="{% url 'webapp:post_delete' post.pk %}"><i
+                        class="fas fa-user-times"></i></a>
+                {% endif %}
             </div>
             <div class="card-body">
                 <h3>{{ post.title }}</h3>
+                <h3>{{ author }}</h3>
                 <p>{{ post.text }}</p>
-                <h6 class="mt-3">Автор: {{ post.author }} с.</h6>
+                <h6 class="mt-3">Автор: {{ post.author }}</h6>
                 <h6 class="mt-3">Дата: {{ post.publish_date }}</h6>
             </div>
         </div>

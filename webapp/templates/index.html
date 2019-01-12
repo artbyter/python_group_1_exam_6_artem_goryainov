@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h3>Список постов</h3>
+    {% if user.is_authenticated %}
+        <a href="{% url 'webapp:post_create' %}">Добавить пост</a>
+    {% endif %}
     <table>
         <thead>
         <tr>

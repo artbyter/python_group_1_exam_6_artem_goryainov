@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Удалить пост{% endblock %}
+
+{% block content %}
+
+
+    <form action="{% url "webapp:post_delete" post.pk %}" method="post">
+        {% csrf_token %}
+
+        <h2>Вы действительно хотите удалить пост "{{ post.title }}"?</h2>
+
+        <div>
+            <input class="btn btn-link"
+                   type="button" value="Отменить"
+                   onclick="window.history.go(-1);"/>
+            <input class="btn btn-link" type="submit" value="Подтвердить"/>
+        </div>
+        <br>
+
+    </form>
+
+{% endblock content %}

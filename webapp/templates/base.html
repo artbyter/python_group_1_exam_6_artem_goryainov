@@ -37,7 +37,7 @@
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item active">
-                            <p class=" nav-link  text-secondary "> Добро пожаловать, {{ user.get_full_name }}</p>
+                            <p class=" nav-link  text-secondary "> Добро пожаловать, {{ user.username }}</p>
 
                         </li>
                         <a class="  nav-link " href="{% url 'webauth:logout' %}">Выйти</a>
